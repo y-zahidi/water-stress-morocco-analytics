@@ -336,9 +336,7 @@ That said, I'm open to licensing discussions for the right opportunities.
 
 ---
 
-## 👨‍💻 About the Developer
-
-Hi! I'm **Mohammed Taha BENMAHI** (with **Yassir ZAHIDI** as co-developer), a data engineering student passionate about using technology to solve real-world problems.
+## 👨‍💻 About :
 
 This project represents 6 weeks of intensive work during my academic year. While it started as a course assignment, it evolved into something much more substantial.
 
@@ -354,20 +352,8 @@ This project represents 6 weeks of intensive work during my academic year. While
 - Business Intelligence positions
 - Environmental data consulting opportunities
 
-**Contact:**
-- **LinkedIn:** [Your Profile]
-- **Email:** [Your Email]
-- **Portfolio:** [Your Website]
-
 ---
 
-## 🙏 Acknowledgments
-
-Special thanks to:
-
-- **Professor Achraf BARAKA** for guidance on database design principles and pushing me to think beyond the basics
-- **ISMAGI** for providing the resources and environment to tackle this ambitious project
-- **Morocco's water agencies** whose published reports inspired the problem domain and data patterns
 
 While this implementation is academic, the problem it addresses is urgent and real. Climate change isn't waiting, and neither should our ability to analyze and respond to it.
 
@@ -388,8 +374,6 @@ Some numbers about the project:
 ---
 
 **⭐ Found this interesting? Star the repository!**
-
-**💬 Have questions about the approach? Open an issue - I enjoy technical discussions.**
 
 ---
 
