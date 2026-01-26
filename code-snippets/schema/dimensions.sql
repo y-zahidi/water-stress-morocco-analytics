@@ -1,6 +1,5 @@
 -- ============================================================
 -- DIMENSION TABLES - Water Stress Morocco Analytics
--- Author: Mohammed Taha BENMAHI, Yassir ZAHIDI  
 -- Purpose: Reference data for star schema
 -- ============================================================
 
