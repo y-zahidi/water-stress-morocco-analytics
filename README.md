@@ -1,5 +1,12 @@
 # 💧 Water Stress Analysis System - Morocco
 
+
+  ![Status](https://img.shields.io/badge/status-active-success.svg)
+  ![License](https://img.shields.io/badge/license-proprietary-red.svg)
+  ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue.svg)
+  ![QlikView](https://img.shields.io/badge/QlikView-11.x-orange.svg)
+
+
 > A comprehensive data warehouse and business intelligence solution for analyzing water stress across Morocco's regions.
 
 **Status:** 🚀 Active Development | Version 2.0 in progress  
