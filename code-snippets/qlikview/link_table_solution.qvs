@@ -1,0 +1,109 @@
+// ============================================================
+// QlikView Script - Link Table Solution
+// Problem: Synthetic keys when multiple facts share dimensions
+// Solution: Explicit link table with composite key
+// ============================================================
+
+// ============================================================
+// STEP 1: Load facts with composite key
+// ============================================================
+
+// Fact: Water Availability
+TempDispoM:
+LOAD 
+    ville_id AS %VilleID,
+    mois_id AS %MoisID,
+    volume_total_km3 AS [Volume Total (km³)],
+    volume_souterrain_km3 AS [Volume Souterrain (km³)],
+    volume_surface_km3 AS [Volume Surface (km³)];
+SQL SELECT * FROM volumes_eau_disponibles_m;
+
+// Add composite key
+DispoM:
+LOAD *,
+    AutoNumberHash128(%VilleID, %MoisID) AS %VilleMoisKey
+RESIDENT TempDispoM;
+
+DROP TABLE TempDispoM;
+
+// Fact: Stress Index (same process)
+TempStressM:
+LOAD 
+    ville_id AS %VilleID,
+    mois_id AS %MoisID,
+    indice_stress AS [Indice Stress],
+    categorie_stress;
+SQL SELECT * FROM indice_stress_hydrique_m;
+
+StressM:
+LOAD *,
+    AutoNumberHash128(%VilleID, %MoisID) AS %VilleMoisKey
+RESIDENT TempStressM;
+
+DROP TABLE TempStressM;
+
+// ============================================================
+// STEP 2: Build Link Table (THE KEY SOLUTION!)
+// ============================================================
+
+// Collect all unique (city, month) combinations from facts
+LinkVilleMois:
+LOAD DISTINCT
+    %VilleMoisKey,
+    %VilleID,
+    %MoisID
+RESIDENT DispoM;
+
+// Append combinations from other facts
+CONCATENATE (LinkVilleMois)
+LOAD DISTINCT
+    %VilleMoisKey,
+    %VilleID,
+    %MoisID
+RESIDENT StressM;
+
+// ============================================================
+// STEP 3: Remove original keys from facts
+// ============================================================
+
+// This forces QlikView to use the Link Table
+// Result: Clean model, zero $Syn keys!
+
+DROP FIELDS %VilleID, %MoisID FROM DispoM;
+DROP FIELDS %VilleID, %MoisID FROM StressM;
+
+// ============================================================
+// VERIFICATION: Check for synthetic keys
+// ============================================================
+
+LET vSynCount = NoOfTables('$Syn*');
+TRACE === Link Table Verification ===;
+TRACE Synthetic keys found: $(vSynCount);
+TRACE Expected: 0;
+TRACE ================================;
+
+// If vSynCount > 0, something went wrong!
+// Common issues:
+// - Forgot to DROP FIELDS from one of the facts
+// - Multiple facts with 3+ shared keys (need additional link tables)
+// - Typo in field names
+
+// ============================================================
+// FINAL MODEL STRUCTURE
+// ============================================================
+
+/*
+Expected table relationships:
+
+    Regions
+       ↓ (1:N)
+    Villes  ←──┐
+       ↓ (N:1)  │
+ LinkVilleMois  │
+    ↙     ↘     │ (N:1)
+DispoM   StressM │
+               ↓
+            DimMois
+
+Clean, predictable, no $Syn!
+*/
