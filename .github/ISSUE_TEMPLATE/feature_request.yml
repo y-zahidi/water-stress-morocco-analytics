@@ -1,0 +1,50 @@
+name: Feature request
+description: Suggest an improvement or new feature
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please describe the problem and the solution as clearly as you can.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What pain point or use case is this feature addressing?
+      placeholder: As a user I want to … so that …
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you solve it? UI mockups, API sketches, code snippets all welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you tried/thought of other approaches? Why didn't they work?
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context
+      description: Anything else (links, related issues, references)?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and didn't find a duplicate
+          required: true
