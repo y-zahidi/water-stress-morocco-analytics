@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this dataset or analysis in your work, please cite it as below."
+title: "Water Stress Morocco Analytics"
+authors:
+  - family-names: Zahidi
+    given-names: Yassir
+    email: yassirzahidi8@gmail.com
+type: dataset
+abstract: >-
+  A data warehouse and analytical model exploring water-stress indicators
+  across Moroccan regions (2015–2025). Star schema, 12 regions, ~68k rows,
+  built in MySQL with QlikView dashboards.
+keywords:
+  - water-stress
+  - morocco
+  - data-warehouse
+  - star-schema
+  - analytics
+license: MIT
+repository-code: "https://github.com/y-zahidi/water-stress-morocco-analytics"
